@@ -1,5 +1,4 @@
 const Session = require('../models/Session');
-const { index } = require('./Users');
 
 class SessionController {
 
@@ -13,7 +12,7 @@ class SessionController {
 
         if (user) {
             req.session.user = user;
-            res.json(user);
+            res.redirect('/dashboard');
         } else {
             console.log('err');
         }

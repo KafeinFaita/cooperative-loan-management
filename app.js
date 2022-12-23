@@ -22,13 +22,20 @@ app.use(express.static(__dirname + '/public'));
 
 app.use(routes);
 
-app.get('/', (req, res) => {
-    if (req.session.user === undefined) {
-        return res.render('index');
-    }
-    console.log(req.session.user);
-    res.render('dashboard');
-})
+// app.get('/', (req, res) => {
+//     if (req.session.user === undefined) {
+//         return res.render('index');
+//     }
+//     console.log(req.session.user);
+//     res.redirect('/dashboard');
+// })
+
+// app.get('/dashboard', (req, res) => {
+//     if (req.session.user === undefined) {
+//         return res.redirect('/');
+//     }
+//     res.render('dashboard');
+// })
 
 app.listen(8000, () => {
     console.log('Listening')
