@@ -18,6 +18,15 @@ class SessionController {
         }
     }
 
+    async destroy(req, res) {
+        if (req.session.user) {
+            req.session.destroy();
+            res.redirect('/login');
+        } else {
+            res.redirect('/');
+        } 
+    }
+
 }
 
 module.exports = new SessionController;

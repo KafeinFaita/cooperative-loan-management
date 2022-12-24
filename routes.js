@@ -28,5 +28,6 @@ router.post('/users', UserController.create);
 
 router.get('/login', Middleware.redirectLoggedUser, SessionController.index);
 router.post('/login', SessionController.create);
+router.get('/logout', SessionController.destroy);
 
 module.exports = router;
