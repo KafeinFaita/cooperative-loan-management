@@ -19,14 +19,14 @@ const router = express.Router();
 //     }
 //     res.render('dashboard');
 // })
-router.get('/', MainController.index);
+router.get('/', Middleware.redirectLoggedUser, MainController.index);
 router.get('/dashboard', Middleware.requireAuth, MainController.dashboard);
 
 router.get('/users', UserController.index);
 router.get('/users/new', UserController.new);
 router.post('/users', UserController.create);
 
-router.get('/login', SessionController.index);
+router.get('/login', Middleware.redirectLoggedUser, SessionController.index);
 router.post('/login', SessionController.create);
 
 module.exports = router;

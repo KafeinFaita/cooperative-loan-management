@@ -4,9 +4,6 @@ class MainController {
     }
 
     dashboard(req, res) {
-        if (req.session.user === undefined) {
-            return res.redirect('/');
-        }
         res.render('dashboard');
     }
 }
