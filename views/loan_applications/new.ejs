@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>NEW APPLICATION</h1>
+
+    <form action="/dashboard/loan_applications" method="post">
+        <input type="hidden" name="member_id" value=<%= id %> >
+        <p>Member's Name: <%= first_name %> <%= last_name %></p>
+
+        <label for="loan_type">Loan to Apply</label>
+        <select name="loan_type_id" class="loan_type" id="loan_type">
+<% loanTypes.forEach(type => { %>
+            <option value=<%= type.id %>><%= type.loan_type %></option>
+<% }) %>
+        </select>
+
+        <label for="purpose">Purpose: </label>
+        <input type="text" name="purpose">
+
+        <p class="max_amount"></p>
+        <p class="comakers"></p>
+        <p class="max_term"></p>
+        <p class="processing_fee"></p>
+    
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        const loanTypes = JSON.parse('<%- JSON.stringify(loanTypes) %>');
+        const loanSelect = document.querySelector('.loan_type');
+
+        loanSelect.addEventListener('change', () => {
+            let selectedLoanType = loanTypes.find(type => type.id === +loanSelect.value);
+
+            document.querySelector('.max_amount').textContent = `Maximum Loanable Amount: Php ${selectedLoanType.max_amount}`;
+            document.querySelector('.comakers').textContent = `Required Number of Co-Makers: ${selectedLoanType.required_comakers}`;
+            document.querySelector('.max_term').textContent = `Maximum Payment Terms (in Years): ${selectedLoanType.max_term}`;
+            document.querySelector('.processing_fee').textContent = `Processing Fee: Php ${selectedLoanType.processing_fee}`;
+        })
+    </script>
+</body>
+</html>
+
