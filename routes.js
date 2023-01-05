@@ -4,6 +4,7 @@ const UserController = require('./controllers/Users');
 const SessionController = require('./controllers/Sessions');
 const LoanApplicationController = require('./controllers/LoanApplications');
 const Middleware = require('./middleware');
+const Main = require('./controllers/Main');
 const router = express.Router();
 
 // router.get('/', (req, res) => {
@@ -22,6 +23,7 @@ const router = express.Router();
 // })
 router.get('/', Middleware.redirectLoggedUser, MainController.index);
 router.get('/dashboard', Middleware.requireAuth, MainController.dashboard);
+router.get('/dashboard/profile', MainController.profile);
 router.get('/dashboard/*', Middleware.requireAuth);
 
 router.get('/users', Middleware.requireAuth, Middleware.checkRole(1), UserController.index);
