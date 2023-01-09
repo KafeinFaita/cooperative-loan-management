@@ -2,7 +2,9 @@ const LoanType = require('../models/LoanType');
 const LoanApplication = require('../models/LoanApplication');
 
 class LoanApplicationController {
-    index (req, res) {
+    async index (req, res) {
+        const loanApplications = await LoanApplication.getAll();
+        console.log(loanApplications)
         res.render('loan_applications/index');
     }
 

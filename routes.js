@@ -24,7 +24,7 @@ const router = express.Router();
 router.get('/', Middleware.redirectLoggedUser, MainController.index);
 router.get('/dashboard', Middleware.requireAuth, MainController.dashboard);
 router.get('/dashboard/profile', MainController.profile);
-router.get('/dashboard/*', Middleware.requireAuth);
+// router.get('/dashboard/*', Middleware.requireAuth);
 
 router.get('/users', Middleware.requireAuth, Middleware.checkRole(1), UserController.index);
 router.get('/users/new', UserController.new);
